@@ -9,7 +9,6 @@ Local or remote internal services can be exposed via SSH reverse tunneling while
 - no need to install extra software, merely for convenience
 - no need to open ports on either end, the only port open to the relay's SSH server
 - no credentials stored on relay
-- management script for client convenience
 
 ## Prerequisites
 - Internet-reachable configurable VPS
