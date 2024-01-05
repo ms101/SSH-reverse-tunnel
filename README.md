@@ -15,7 +15,7 @@ Local or remote internal services can be exposed via SSH reverse tunneling while
 - SSH client on server and clients
   - optionally autossh
 - outgoing SSH connections to VPS
-	- could be tunneled through proxies via HTTP CONNECT wrapping SSH in HTTP(S) [1]
+	- if a firewall blocks SSH from the internal system, SSH could be used through proxies via HTTP CONNECT or by wrapping SSH in HTTP(S) [1]
 
 ## Concept
 VPS acts as a relay:
