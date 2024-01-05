@@ -46,9 +46,9 @@ As an example a local web service on the server will be forwarded.
 ### VPS
 1. create new user relayuser
     * `sudo useradd -m relayuser`
-2. generate a key pair on a secure device, transfer fingerprint of the public key to the VPS, transfer the private key to the server and clients
+2. generate a key pair on a secure device, transfer the public key to the VPS, transfer the private key to the server and clients
     * `ssh-keygen -t ed25519 -C "relayuser"`
-    * `ssh-copy-id or scp`
+    * `ssh-copy-id` or `scp`
 3. disable SSH password authentication via sshd.conf, restart SSH server
     * `PasswordAuthentication no`
     * `sudo systemctl restart ssh`
