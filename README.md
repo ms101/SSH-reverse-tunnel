@@ -5,7 +5,7 @@ Local or remote internal services can be exposed via SSH reverse tunneling while
 ## Features
 - relay internal services through NAT/firewall using a relay/rendevouz server
 - expose internal services of a restricted network in a secure manner
-- manage internal systems or exfiltrate data with E2E encryption
+- manage internal systems or exfiltrate data
 - no need to install extra software, merely for convenience
 - no need to open ports on either end, the only port open to the relay's SSH server
 - no credentials stored on relay
