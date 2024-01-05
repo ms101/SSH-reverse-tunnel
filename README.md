@@ -2,6 +2,8 @@
 
 Local or remote internal services can be exposed via SSH reverse tunneling while bypassing NAT or firewalls.
 
+![SSH reverse tunnel concept](concept.png)
+
 ## Features
 - relay internal services through NAT/firewall using a relay/rendevouz server
 - expose internal services of a restricted network in a secure manner
@@ -22,8 +24,6 @@ VPS acts as a relay:
 1. the internal system (server) stays connected to the VPS and forwards a specified local or network reachable service
 2. external systems (clients) can connect anytime to the VPS and forward a local port of the VPS to themselves
 3. eventually the user can connect locally on its client to use services from a remote network
-
-![SSH reverse tunnel concept](concept.png)
 
 
 ## Basic Setup
