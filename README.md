@@ -17,7 +17,6 @@ Local or remote internal services can be exposed via SSH reverse tunneling while
 - SSH client on server and clients
   - optionally autossh
 - outgoing SSH connections to VPS
-	- if a firewall blocks SSH from the internal system, SSH could be used through proxies via HTTP CONNECT or by wrapping SSH in HTTP(S) [1]
 
 ## Concept
 VPS acts as a relay:
@@ -74,6 +73,14 @@ Host VPS
 ```
 5. optionally define alias
     * `alias relayweb='echo "[*] Access via http://localhost:44433 quit with Ctrl+c" && ssh -L 44433:localhost:44433 -i ~/.ssh/id_ed25519_relay VPS sleep 86400'`
+
+## Extensions and Alternatives
+* if TCP/22 outbound is blocked, try to start SSH server on 80/443/25/587/...
+  * alternatively try to use SSH through proxies via HTTP CONNECT or by wrapping SSH in HTTP(S) [1]
+* for a bit more VPN feeling, set up the server SSH tunnel as dynamic (`ssh -D 1080 user@server`)
+  * so each SOCKS-aware application on client devices can connect to arbitrary internal services without being limiting to specific ports
+  * even non-SOCKS-aware applications could use this with e.g. tun-socks/sockstun
+* Tailscale is based on wireguard and also uses a central signaling server
 
 
 
