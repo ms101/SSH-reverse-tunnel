@@ -36,7 +36,7 @@ VPS acts as a relay:
 	1. configure SSH with private key of relayuser
 	2. configure port forward from VPS to client
 
-Keep in mind to first connect all SSH connections manually for verifying and approving the VPS' fingerprint. Also check if the forwarded port on the VPS is only actually bound to localhost.
+Keep in mind to first connect all SSH connections manually for verifying and approving the VPS' fingerprint. Also check if the forwarded port on the VPS is exclusively bound to localhost.
 
 
 ## Detailled Setup with Commands
