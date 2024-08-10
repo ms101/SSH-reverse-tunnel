@@ -48,23 +48,23 @@ As an example a local web service on the server will be forwarded.
     * `sudo useradd -m relayuser`
 2. generate a key pair on a secure device, transfer the public key to the VPS, transfer the private key to the server and clients
     * `ssh-keygen -t ed25519 -C "relayuser"`
-    * `ssh-copy-id` or `scp`
-3. disable SSH password authentication via sshd.conf, restart SSH server
+    * use ssh-copy-id or scp
+3. harden the relay, e.g. disable SSH password authentication via sshd_config, restart SSH server
     * `PasswordAuthentication no`
     * `sudo systemctl restart ssh`
 
 ### Server
-1. establish SSH tunnel (first port is local target port on VPS)
+1. establish SSH tunnel (port 44433 is local target port on VPS)
     * `ssh -fN -R 44433:localhost:443 -i ~/.ssh/id_ed25519_relay relayuser@VPS`
-2. automation with autossh and systemd service
+2. automation with autossh and new systemd service
     * `ExecStart=/usr/bin/autossh -NT -o "ExitOnForwardFailure=yes" -R 44433:127.0.0.1:443 -i /home/user/.ssh/id_ed25519_relay relayuser@VPS`
 
 ### Client
-1. establish SSH tunnel, connect via http://localhost:44433
+1. establish SSH tunnel for web access, connect via https://localhost:44433
     * `ssh -L 44433:localhost:44433 VPS sleep 86400`
-2. for SSH you can use the following
+2. for SSH access you can use the following
     * `ssh -f -L 40022:localhost:40022 VPS sleep 10; ssh user@localhost -p 40022`
-3. automation see above
+3. automation see Server
 4. client ssh config
 ```
 Host VPS
@@ -73,10 +73,10 @@ Host VPS
   IdentityFile ~/.ssh/id_ed25519_relay
 ```
 5. optionally define alias
-    * `alias relayweb='echo "[*] Access via http://localhost:44433 quit with Ctrl+c" && ssh -L 44433:localhost:44433 -i ~/.ssh/id_ed25519_relay VPS sleep 86400'`
+    * `alias relayweb='echo "[*] Access via https://localhost:44433 quit with Ctrl+c" && ssh -L 44433:localhost:44433 -i ~/.ssh/id_ed25519_relay VPS sleep 86400'`
 
 ## Extensions and Alternatives
-* if TCP/22 outbound is blocked, try to start SSH server on 80/443/25/587/...
+* if TCP/22 outbound is blocked, try to start SSH server on relay on port 80/443/25/587/...
   * alternatively try to use SSH through proxies via HTTP CONNECT or by wrapping SSH in HTTP(S) [1]
 * for a bit more VPN feeling, set up the server SSH tunnel as dynamic (`ssh -D 1080 user@server`)
   * so each SOCKS-aware application on client devices can connect to arbitrary internal services without being limiting to specific ports
