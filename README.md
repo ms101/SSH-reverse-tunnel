@@ -1,6 +1,6 @@
 # SSH Reverse Tunneling internal Services through NAT/Firewalls
 
-Local or remote internal services can be exposed via SSH reverse tunneling while bypassing NAT or firewalls.
+Local or internal services can be exposed via SSH reverse tunneling while bypassing NAT or firewalls.
 
 ![SSH reverse tunnel concept](concept.png)
 
