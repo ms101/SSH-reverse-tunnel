@@ -79,7 +79,7 @@ Host VPS
 * if TCP/22 outbound is blocked, try to start SSH server on relay on port 80/443/25/587/...
   * alternatively try to use SSH through proxies via HTTP CONNECT or by wrapping SSH in HTTP(S) [1]
 * for a bit more VPN feeling, set up the server SSH tunnel as dynamic (`ssh -D 1080 user@server`)
-  * so each SOCKS-aware application on client devices can connect to arbitrary internal services without being limiting to specific ports
+  * so each SOCKS-aware application on client devices can connect to arbitrary internal services without being limited to specific ports
   * even non-SOCKS-aware applications could use this with e.g. tun-socks/sockstun
 * Tailscale is based on wireguard and also uses a central signaling server
 
